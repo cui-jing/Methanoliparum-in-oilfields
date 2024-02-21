@@ -56,7 +56,7 @@ checkm lineage_wf -x fa -t 40 checkm_res;
 gtdbtk classify_wf --genome_dir gtdbtk_test/genomes --out_dir gtdbtk_test/output --cpus 10;
 
 # Identification of genes coding for enzymes with alkane activation potentials
-perl limit2Length.pl -f assembled_scaffold.fasta -len 500 -o scaffold_500.fasta 
+perl limit2Length.pl -f assembled_scaffold.fasta -len 500 -o scaffold_500.fasta
 prodigal -f gff -i scaffold_500.fasta -o scaffold_500.fasta.gff -p meta -a scaffold_500.faa -d scaffold_500.fna
 hmmsearch mcrA.hmm scaffold_500.faa > scaffold_500_mcrA.out
 perl extract_fasta_from_list.pl -f scaffold_500.faa -l scaffold_500_mcrA.list -o mcrA.faa (used for phylogenetic analysis)
@@ -83,7 +83,7 @@ perl /script/combine_aligned_ribosomal_v2.0.pl
 Input alignment folder:./
 /tools/iqtree/bin/iqtree-omp -s ref_ribosomal_combine.phy -nt 30 -m WAG -bb 1000
 
-## Phylogenetic trees for AcrA/McrA, AssA related, BcrB, and BcrC protein sequence
+## Phylogenetic trees for AcrA/McrA, AssA related protein sequence
 makeblastdb -in mcrA_reference_protein_seqs.faa -dbtype prot
 blastp -query bin.fa.faa -db mcrA_reference_protein_seqs.faa -out bin.fa.txt -outfmt 6 -evalue 1e-5 -max_target_seqs 1 -num_threads 30
 muscle -in combined_mcrA.faa -out aligned_combined_mcrA.faa
